@@ -17,7 +17,12 @@ module.exports = {
   },
   ignorePatterns: ['.eslintrc.js'],
   rules: {
-    '@typescript-eslint/no-unused-vars': 'error',
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        argsIgnorePattern: '^_',
+      },
+    ],
     '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
     '@typescript-eslint/consistent-type-imports': 'error',
     '@typescript-eslint/interface-name-prefix': 'off',
@@ -28,11 +33,10 @@ module.exports = {
       },
     ],
     '@typescript-eslint/explicit-module-boundary-types': 'error',
-    '@typescript-eslint/no-explicit-any': 'error',
+    '@typescript-eslint/no-explicit-any': 'warn',
     '@typescript-eslint/explicit-member-accessibility': [
       'error',
       {
-        accessibility: 'no-public',
         overrides: {
           constructors: 'off',
         },
@@ -60,5 +64,6 @@ module.exports = {
       },
     ],
     'import/newline-after-import': 1,
+    '@typescript-eslint/ban-ts-comment': 'error',
   },
 };

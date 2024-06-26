@@ -29,6 +29,9 @@
     "noImplicitOverride": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
-    "strictFunctionTypes": true
+    // "strictFunctionTypes": true,
+    "paths": {
+      "@overtk/core/*": ["src/core/*"]
+    }
   }
 }

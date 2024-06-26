@@ -6,6 +6,7 @@
   "deno.enable": false,
   "cSpell.ignoreRegExpList": [
     "[Ff]astify",
-    "nest"
+    "nest",
+    "overtk"
   ]
 }
