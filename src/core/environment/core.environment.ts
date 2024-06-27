@@ -41,16 +41,12 @@ export class CoreEnvironmentImpl implements CoreEnvironment {
   public API_PORT: number = DEFAULT_APP_PORT;
 
   @StringProperty({
-    transform(params) {
-      return resolvePathFromRoot(params.value as string);
-    },
+    transform: (params) => resolvePathFromRoot(params.value as string),
   })
   public HTTPS_CERT_FILE_PATH!: string;
 
   @StringProperty({
-    transform(params) {
-      return resolvePathFromRoot(params.value as string);
-    },
+    transform: (params) => resolvePathFromRoot(params.value as string),
   })
   public HTTPS_KEY_FILE_PATH!: string;
 
