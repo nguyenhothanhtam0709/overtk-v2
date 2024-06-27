@@ -1,5 +1,5 @@
-import type { TypedPropertyDecorator } from '@overtk/core/typing/decorator';
-import type { ObjectKey } from '@overtk/core/typing/class';
+import type { TypedPropertyDecorator } from '@overtk/common/typing/decorator';
+import type { ObjectKey } from '@overtk/common/typing/class';
 import { applyDecorators } from '@nestjs/common';
 import { isDefined, IsString, MaxLength, MinLength } from 'class-validator';
 import {

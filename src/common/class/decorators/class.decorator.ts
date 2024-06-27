@@ -1,5 +1,5 @@
-import type { TypedClassDecorator } from '@overtk/core/typing/decorator';
-import type { TypedClass } from '@overtk/core/typing/class';
+import type { TypedClassDecorator } from '@overtk/common/typing/decorator';
+import type { TypedClass } from '@overtk/common/typing/class';
 import type { ValidationError, ValidatorOptions } from 'class-validator';
 import { validateSync } from 'class-validator';
 

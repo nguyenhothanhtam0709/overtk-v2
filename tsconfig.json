@@ -31,7 +31,7 @@
     "noImplicitThis": true,
     // "strictFunctionTypes": true,
     "paths": {
-      // core libs
+      "@overtk/common/*": ["src/common/*"],
       "@overtk/core/*": ["src/core/*"]
     }
   }
