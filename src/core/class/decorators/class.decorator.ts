@@ -1,5 +1,5 @@
 import type { TypedClassDecorator } from '@overtk/core/typing/decorator';
-import type { Class } from '@overtk/core/typing/class';
+import type { TypedClass } from '@overtk/core/typing/class';
 import type { ValidationError, ValidatorOptions } from 'class-validator';
 import { validateSync } from 'class-validator';
 
@@ -26,7 +26,7 @@ export type ClassDecoratorOptions = {
 export function ClassDecorator<T extends object>(
   options: ClassDecoratorOptions = {},
 ): TypedClassDecorator<T> {
-  return function <TClass extends Class<T>>(
+  return function <TClass extends TypedClass<T>>(
     constructor: TClass,
   ): TClass | void {
     let C = class extends constructor {};

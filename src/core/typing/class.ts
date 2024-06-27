@@ -1,4 +1,4 @@
-export type { Class } from 'type-fest';
+export type { Class as TypedClass } from 'type-fest';
 
 export type ClassPropertyKey = string | symbol;
 
