@@ -4,7 +4,7 @@ import type { NestFastifyApplication } from '@nestjs/platform-fastify';
 import { Test } from '@nestjs/testing';
 import * as request from 'supertest';
 import { FastifyAdapter } from '@nestjs/platform-fastify';
-import { AppModule } from './../src/app.module';
+import { AppModule } from '../src/app/app.module';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;

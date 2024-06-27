@@ -23,6 +23,10 @@ export type ClassDecoratorOptions = {
       };
 };
 
+/**
+ * Decorator utility for class.
+ * This decorator can not be inherited through class Mixin
+ */
 export function ClassDecorator<T extends object>(
   options: ClassDecoratorOptions = {},
 ): TypedClassDecorator<T> {

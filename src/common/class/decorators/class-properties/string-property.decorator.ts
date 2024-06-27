@@ -1,15 +1,27 @@
 import type { TypedPropertyDecorator } from '@overtk/common/typing/decorator';
 import type { ObjectKey } from '@overtk/common/typing/class';
 import { applyDecorators } from '@nestjs/common';
-import { isDefined, IsString, MaxLength, MinLength } from 'class-validator';
+import {
+  isDefined,
+  IsNotEmpty,
+  IsString,
+  MaxLength,
+  MinLength,
+} from 'class-validator';
+import { decorate } from 'ts-mixer';
 import {
   getClassPropertyDecoratorsFromCommonOptions,
   type ClassPropertyDecoratorCommonOptions,
 } from './_common';
 
-type StringPropertyDecoratorOptions = ClassPropertyDecoratorCommonOptions & {
+type StringPropertyDecoratorOptions<
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  TTarget extends Object,
+  TKey extends ObjectKey<TTarget>,
+> = ClassPropertyDecoratorCommonOptions<TTarget, TKey> & {
   minLength?: number;
   maxLength?: number;
+  allowEmpty?: boolean;
 };
 
 export function StringPropertyDecorator<
@@ -17,7 +29,7 @@ export function StringPropertyDecorator<
   TTarget extends Object,
   TKey extends ObjectKey<TTarget>,
 >(
-  options: StringPropertyDecoratorOptions = {},
+  options: StringPropertyDecoratorOptions<TTarget, TKey> = {},
 ): TypedPropertyDecorator<TTarget, TKey, string> {
   const appliedDecorators: PropertyDecorator[] = [
     IsString(),
@@ -32,7 +44,11 @@ export function StringPropertyDecorator<
     appliedDecorators.push(MaxLength(options.maxLength));
   }
 
+  if (!options.allowEmpty) {
+    appliedDecorators.push(IsNotEmpty());
+  }
+
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  return applyDecorators(...appliedDecorators);
+  return decorate(applyDecorators(...appliedDecorators));
 }

@@ -1,0 +1,1 @@
+export { resolvePathFromRoot } from './utils';

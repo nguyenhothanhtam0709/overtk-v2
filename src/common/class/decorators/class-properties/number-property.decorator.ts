@@ -8,12 +8,18 @@ import {
   Max,
   Min,
 } from 'class-validator';
+import { decorate } from 'ts-mixer';
+import { applyDecorators } from '@nestjs/common';
 import {
   getClassPropertyDecoratorsFromCommonOptions,
   type ClassPropertyDecoratorCommonOptions,
 } from './_common';
 
-type NumberPropertyDecoratorOptions = ClassPropertyDecoratorCommonOptions & {
+type NumberPropertyDecoratorOptions<
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  TTarget extends Object,
+  TKey extends ObjectKey<TTarget>,
+> = ClassPropertyDecoratorCommonOptions<TTarget, TKey> & {
   min?: number;
   max?: number;
   integer?: boolean;
@@ -25,7 +31,7 @@ export function NumberPropertyDecorator<
   TTarget extends Object,
   TKey extends ObjectKey<TTarget>,
 >(
-  options: NumberPropertyDecoratorOptions = {},
+  options: NumberPropertyDecoratorOptions<TTarget, TKey> = {},
 ): TypedPropertyDecorator<TTarget, TKey, number> {
   const appliedDecorators: PropertyDecorator[] = [
     IsNumber(),
@@ -50,5 +56,5 @@ export function NumberPropertyDecorator<
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  return applyDecorators(...appliedDecorators);
+  return decorate(applyDecorators(...appliedDecorators));
 }
