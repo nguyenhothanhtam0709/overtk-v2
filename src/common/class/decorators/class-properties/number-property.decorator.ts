@@ -1,5 +1,6 @@
 import type { TypedPropertyDecorator } from '@overtk/common/typing/decorator';
 import type { ObjectKey } from '@overtk/common/typing/class';
+import type { IsNumberOptions } from 'class-validator';
 import {
   IsDecimal,
   isDefined,
@@ -25,7 +26,7 @@ type NumberPropertyDecoratorOptions<
   max?: number;
   integer?: boolean;
   decimal?: boolean;
-};
+} & IsNumberOptions;
 
 export function NumberPropertyDecorator<
   // eslint-disable-next-line @typescript-eslint/ban-types
@@ -33,10 +34,13 @@ export function NumberPropertyDecorator<
   TKey extends ObjectKey<TTarget>,
   TOptional extends boolean,
 >(
-  options: NumberPropertyDecoratorOptions<TTarget, TKey, TOptional> = {},
+  options: NumberPropertyDecoratorOptions<TTarget, TKey, TOptional> = {
+    allowNaN: false,
+    allowInfinity: false,
+  },
 ): TypedPropertyDecorator<TTarget, TKey, number, TOptional> {
   const appliedDecorators: PropertyDecorator[] = [
-    IsNumber(),
+    IsNumber(options),
     ...getClassPropertyDecoratorsFromCommonOptions(options),
   ];
 
