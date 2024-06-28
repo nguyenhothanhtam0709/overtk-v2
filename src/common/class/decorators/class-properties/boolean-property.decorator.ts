@@ -20,7 +20,7 @@ export function BooleanPropertyDecorator<
   TKey extends ObjectKey<TTarget>,
 >(
   options: BooleanPropertyDecoratorOptions<TTarget, TKey> = {},
-): TypedPropertyDecorator<TTarget, TKey, string> {
+): TypedPropertyDecorator<TTarget, TKey, boolean> {
   const appliedDecorators: PropertyDecorator[] = [
     IsBoolean(),
     ...getClassPropertyDecoratorsFromCommonOptions(options),
