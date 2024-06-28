@@ -1,3 +1,4 @@
+import type { TypedClass } from '@overtk/common/typing/class';
 import {
   Class,
   EnumProperty,
@@ -29,7 +30,7 @@ export type CoreEnvironment = {
   freeze: false,
   validate: false,
 })
-export class CoreEnvironmentImpl implements CoreEnvironment {
+class CoreEnvironmentImpl implements CoreEnvironment {
   @StringProperty({
     optional: true,
   })
@@ -62,6 +63,13 @@ export class CoreEnvironmentImpl implements CoreEnvironment {
   public NODE_ENV: NodeEnv = DEFAULT_NODE_ENV;
 }
 
+/**
+ * Get class that implement CoreEnvironment interface
+ */
+export function CoreEnvironmentMixin(): TypedClass<CoreEnvironment> {
+  return CoreEnvironmentImpl;
+}
+
 let coreEnv: Readonly<CoreEnvironment> | undefined;
 /**
  * Load core environment from process.env
@@ -74,7 +82,7 @@ export const getCoreEnvironment = (): Readonly<CoreEnvironment> => {
     // Load process.env
     loadEnv();
 
-    const environment = plainToInstance(CoreEnvironmentImpl, process.env, {
+    const environment = plainToInstance(CoreEnvironmentMixin(), process.env, {
       excludeExtraneousValues: true,
       exposeDefaultValues: true,
       enableImplicitConversion: true,
