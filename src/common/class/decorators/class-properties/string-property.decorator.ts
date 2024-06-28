@@ -32,7 +32,7 @@ export function StringPropertyDecorator<
   TOptional extends boolean,
 >(
   options: StringPropertyDecoratorOptions<TTarget, TKey, TOptional> = {},
-): TypedPropertyDecorator<TTarget, TKey, string> {
+): TypedPropertyDecorator<TTarget, TKey, string, TOptional> {
   const appliedDecorators: PropertyDecorator[] = [
     IsString(),
     ...getClassPropertyDecoratorsFromCommonOptions(options),
