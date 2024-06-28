@@ -12,7 +12,8 @@ type EnumPropertyDecoratorOptions<
   // eslint-disable-next-line @typescript-eslint/ban-types
   TTarget extends Object,
   TKey extends ObjectKey<TTarget>,
-> = ClassPropertyDecoratorCommonOptions<TTarget, TKey> & {
+  TOptional extends boolean,
+> = ClassPropertyDecoratorCommonOptions<TTarget, TKey, TOptional> & {
   enum: object;
 };
 
@@ -21,9 +22,10 @@ export function EnumPropertyDecorator<
   TTarget extends Object,
   TKey extends ObjectKey<TTarget>,
   E,
+  TOptional extends boolean,
 >(
-  options: EnumPropertyDecoratorOptions<TTarget, TKey>,
-): TypedPropertyDecorator<TTarget, TKey, E> {
+  options: EnumPropertyDecoratorOptions<TTarget, TKey, TOptional>,
+): TypedPropertyDecorator<TTarget, TKey, E, TOptional> {
   const appliedDecorators: PropertyDecorator[] = [
     IsEnum(options.enum),
     ...getClassPropertyDecoratorsFromCommonOptions(options),

@@ -12,15 +12,17 @@ type BooleanPropertyDecoratorOptions<
   // eslint-disable-next-line @typescript-eslint/ban-types
   TTarget extends Object,
   TKey extends ObjectKey<TTarget>,
-> = ClassPropertyDecoratorCommonOptions<TTarget, TKey>;
+  TOptional extends boolean,
+> = ClassPropertyDecoratorCommonOptions<TTarget, TKey, TOptional>;
 
 export function BooleanPropertyDecorator<
   // eslint-disable-next-line @typescript-eslint/ban-types
   TTarget extends Object,
   TKey extends ObjectKey<TTarget>,
+  TOptional extends boolean,
 >(
-  options: BooleanPropertyDecoratorOptions<TTarget, TKey> = {},
-): TypedPropertyDecorator<TTarget, TKey, boolean> {
+  options: BooleanPropertyDecoratorOptions<TTarget, TKey, TOptional> = {},
+): TypedPropertyDecorator<TTarget, TKey, boolean, TOptional> {
   const appliedDecorators: PropertyDecorator[] = [
     IsBoolean(),
     ...getClassPropertyDecoratorsFromCommonOptions(options),

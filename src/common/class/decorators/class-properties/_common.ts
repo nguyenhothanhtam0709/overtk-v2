@@ -25,8 +25,9 @@ export type ClassPropertyDecoratorCommonOptions<
   // eslint-disable-next-line @typescript-eslint/ban-types
   TTarget extends Object,
   TKey extends ObjectKey<TTarget>,
+  TOptional extends boolean,
 > = {
-  optional?: boolean;
+  optional?: TOptional;
   exclude?: boolean;
   /** apply Transform decorator */
   transform?: TransformFunction<TTarget, TKey>;
@@ -36,8 +37,9 @@ export function getClassPropertyDecoratorsFromCommonOptions<
   // eslint-disable-next-line @typescript-eslint/ban-types
   TTarget extends Object,
   TKey extends ObjectKey<TTarget>,
+  TOptional extends boolean,
 >(
-  options: ClassPropertyDecoratorCommonOptions<TTarget, TKey> = {},
+  options: ClassPropertyDecoratorCommonOptions<TTarget, TKey, TOptional> = {},
 ): PropertyDecorator[] {
   const commonDecorators: PropertyDecorator[] = [];
 

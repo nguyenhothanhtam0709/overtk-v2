@@ -6,6 +6,7 @@ export type TypedPropertyDecorator<
   TTarget extends Object,
   TKey extends ObjectKey<TTarget>,
   TValue,
+  TOptional extends boolean = false,
 > = (
   target: TTarget,
   propertyKey: TKey,
@@ -13,6 +14,7 @@ export type TypedPropertyDecorator<
   {
     slot: TTarget[TKey];
     value: TValue;
+    optional: TOptional;
     slotName: 'property';
     valueName: 'decorator';
   },

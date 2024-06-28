@@ -18,7 +18,8 @@ type StringPropertyDecoratorOptions<
   // eslint-disable-next-line @typescript-eslint/ban-types
   TTarget extends Object,
   TKey extends ObjectKey<TTarget>,
-> = ClassPropertyDecoratorCommonOptions<TTarget, TKey> & {
+  TOptional extends boolean,
+> = ClassPropertyDecoratorCommonOptions<TTarget, TKey, TOptional> & {
   minLength?: number;
   maxLength?: number;
   allowEmpty?: boolean;
@@ -28,8 +29,9 @@ export function StringPropertyDecorator<
   // eslint-disable-next-line @typescript-eslint/ban-types
   TTarget extends Object,
   TKey extends ObjectKey<TTarget>,
+  TOptional extends boolean,
 >(
-  options: StringPropertyDecoratorOptions<TTarget, TKey> = {},
+  options: StringPropertyDecoratorOptions<TTarget, TKey, TOptional> = {},
 ): TypedPropertyDecorator<TTarget, TKey, string> {
   const appliedDecorators: PropertyDecorator[] = [
     IsString(),

@@ -19,7 +19,8 @@ type NumberPropertyDecoratorOptions<
   // eslint-disable-next-line @typescript-eslint/ban-types
   TTarget extends Object,
   TKey extends ObjectKey<TTarget>,
-> = ClassPropertyDecoratorCommonOptions<TTarget, TKey> & {
+  TOptional extends boolean,
+> = ClassPropertyDecoratorCommonOptions<TTarget, TKey, TOptional> & {
   min?: number;
   max?: number;
   integer?: boolean;
@@ -30,9 +31,10 @@ export function NumberPropertyDecorator<
   // eslint-disable-next-line @typescript-eslint/ban-types
   TTarget extends Object,
   TKey extends ObjectKey<TTarget>,
+  TOptional extends boolean,
 >(
-  options: NumberPropertyDecoratorOptions<TTarget, TKey> = {},
-): TypedPropertyDecorator<TTarget, TKey, number> {
+  options: NumberPropertyDecoratorOptions<TTarget, TKey, TOptional> = {},
+): TypedPropertyDecorator<TTarget, TKey, number, TOptional> {
   const appliedDecorators: PropertyDecorator[] = [
     IsNumber(),
     ...getClassPropertyDecoratorsFromCommonOptions(options),
