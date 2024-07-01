@@ -12,15 +12,15 @@ import {
 import { decorate } from 'ts-mixer';
 import { applyDecorators } from '@nestjs/common';
 import {
-  getClassPropertyDecoratorsFromCommonOptions,
-  type ClassPropertyDecoratorCommonOptions,
+  getPropertyDecoratorsFromCommonOptions,
+  type PropertyDecoratorCommonOptions,
 } from './_common';
 
 type NumberPropertyDecoratorOptions<
   TTarget extends object,
   TKey extends ObjectKey<TTarget>,
   TOptional extends boolean,
-> = ClassPropertyDecoratorCommonOptions<TTarget, TKey, TOptional> & {
+> = PropertyDecoratorCommonOptions<TTarget, TKey, TOptional> & {
   min?: number;
   max?: number;
   integer?: boolean;
@@ -39,7 +39,7 @@ export function NumberPropertyDecorator<
 ): TypedPropertyDecorator<TTarget, TKey, number, TOptional> {
   const appliedDecorators: PropertyDecorator[] = [
     IsNumber(options),
-    ...getClassPropertyDecoratorsFromCommonOptions(options),
+    ...getPropertyDecoratorsFromCommonOptions(options),
   ];
 
   if (isDefined(options.min)) {

@@ -19,7 +19,7 @@ type TransformFunction<
   TKey extends ObjectKey<TTarget>,
 > = (params: TransformFunctionParams<TTarget, TKey>) => TTarget[TKey];
 
-export type ClassPropertyDecoratorCommonOptions<
+export type PropertyDecoratorCommonOptions<
   TTarget extends object,
   TKey extends ObjectKey<TTarget>,
   TOptional extends boolean,
@@ -30,12 +30,12 @@ export type ClassPropertyDecoratorCommonOptions<
   transform?: TransformFunction<TTarget, TKey>;
 };
 
-export function getClassPropertyDecoratorsFromCommonOptions<
+export function getPropertyDecoratorsFromCommonOptions<
   TTarget extends object,
   TKey extends ObjectKey<TTarget>,
   TOptional extends boolean,
 >(
-  options: ClassPropertyDecoratorCommonOptions<TTarget, TKey, TOptional> = {},
+  options: PropertyDecoratorCommonOptions<TTarget, TKey, TOptional> = {},
 ): PropertyDecorator[] {
   const commonDecorators: PropertyDecorator[] = [];
 

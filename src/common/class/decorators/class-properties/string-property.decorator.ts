@@ -10,15 +10,15 @@ import {
 } from 'class-validator';
 import { decorate } from 'ts-mixer';
 import {
-  getClassPropertyDecoratorsFromCommonOptions,
-  type ClassPropertyDecoratorCommonOptions,
+  getPropertyDecoratorsFromCommonOptions,
+  type PropertyDecoratorCommonOptions,
 } from './_common';
 
 type StringPropertyDecoratorOptions<
   TTarget extends object,
   TKey extends ObjectKey<TTarget>,
   TOptional extends boolean,
-> = ClassPropertyDecoratorCommonOptions<TTarget, TKey, TOptional> & {
+> = PropertyDecoratorCommonOptions<TTarget, TKey, TOptional> & {
   minLength?: number;
   maxLength?: number;
   allowEmpty?: boolean;
@@ -33,7 +33,7 @@ export function StringPropertyDecorator<
 ): TypedPropertyDecorator<TTarget, TKey, string, TOptional> {
   const appliedDecorators: PropertyDecorator[] = [
     IsString(),
-    ...getClassPropertyDecoratorsFromCommonOptions(options),
+    ...getPropertyDecoratorsFromCommonOptions(options),
   ];
 
   if (isDefined(options.minLength)) {

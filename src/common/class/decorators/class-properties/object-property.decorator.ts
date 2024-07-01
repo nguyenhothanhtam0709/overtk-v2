@@ -5,8 +5,8 @@ import { IsObject } from 'class-validator';
 import { decorate } from 'ts-mixer';
 import { Type } from 'class-transformer';
 import {
-  getClassPropertyDecoratorsFromCommonOptions,
-  type ClassPropertyDecoratorCommonOptions,
+  getPropertyDecoratorsFromCommonOptions,
+  type PropertyDecoratorCommonOptions,
 } from './_common';
 
 type ObjectPropertyDecoratorOptions<
@@ -14,7 +14,7 @@ type ObjectPropertyDecoratorOptions<
   TKey extends ObjectKey<TTarget>,
   TValue extends object,
   TOptional extends boolean,
-> = ClassPropertyDecoratorCommonOptions<TTarget, TKey, TOptional> & {
+> = PropertyDecoratorCommonOptions<TTarget, TKey, TOptional> & {
   type: TypedClass<TValue>;
 };
 
@@ -29,7 +29,7 @@ export function ObjectPropertyDecorator<
   const appliedDecorators: PropertyDecorator[] = [
     IsObject(),
     Type(() => options.type),
-    ...getClassPropertyDecoratorsFromCommonOptions(options),
+    ...getPropertyDecoratorsFromCommonOptions(options),
   ];
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment

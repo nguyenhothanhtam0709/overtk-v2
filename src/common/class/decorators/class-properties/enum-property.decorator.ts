@@ -4,15 +4,15 @@ import { applyDecorators } from '@nestjs/common';
 import { IsEnum } from 'class-validator';
 import { decorate } from 'ts-mixer';
 import {
-  getClassPropertyDecoratorsFromCommonOptions,
-  type ClassPropertyDecoratorCommonOptions,
+  getPropertyDecoratorsFromCommonOptions,
+  type PropertyDecoratorCommonOptions,
 } from './_common';
 
 type EnumPropertyDecoratorOptions<
   TTarget extends object,
   TKey extends ObjectKey<TTarget>,
   TOptional extends boolean,
-> = ClassPropertyDecoratorCommonOptions<TTarget, TKey, TOptional> & {
+> = PropertyDecoratorCommonOptions<TTarget, TKey, TOptional> & {
   enum: object;
 };
 
@@ -26,7 +26,7 @@ export function EnumPropertyDecorator<
 ): TypedPropertyDecorator<TTarget, TKey, E, TOptional> {
   const appliedDecorators: PropertyDecorator[] = [
     IsEnum(options.enum),
-    ...getClassPropertyDecoratorsFromCommonOptions(options),
+    ...getPropertyDecoratorsFromCommonOptions(options),
   ];
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
