@@ -17,8 +17,7 @@ import {
 } from './_common';
 
 type NumberPropertyDecoratorOptions<
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  TTarget extends Object,
+  TTarget extends object,
   TKey extends ObjectKey<TTarget>,
   TOptional extends boolean,
 > = ClassPropertyDecoratorCommonOptions<TTarget, TKey, TOptional> & {
@@ -29,8 +28,7 @@ type NumberPropertyDecoratorOptions<
 } & IsNumberOptions;
 
 export function NumberPropertyDecorator<
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  TTarget extends Object,
+  TTarget extends object,
   TKey extends ObjectKey<TTarget>,
   TOptional extends boolean,
 >(

@@ -9,15 +9,13 @@ import {
 } from './_common';
 
 type BooleanPropertyDecoratorOptions<
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  TTarget extends Object,
+  TTarget extends object,
   TKey extends ObjectKey<TTarget>,
   TOptional extends boolean,
 > = ClassPropertyDecoratorCommonOptions<TTarget, TKey, TOptional>;
 
 export function BooleanPropertyDecorator<
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  TTarget extends Object,
+  TTarget extends object,
   TKey extends ObjectKey<TTarget>,
   TOptional extends boolean,
 >(

@@ -3,8 +3,7 @@ import { IsDefined, IsOptional } from 'class-validator';
 import { Exclude, Expose, Transform } from 'class-transformer';
 
 type TransformFunctionParams<
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  TTarget extends Object,
+  TTarget extends object,
   TKey extends ObjectKey<TTarget>,
 > = {
   /** Original value */
@@ -16,14 +15,12 @@ type TransformFunctionParams<
 };
 
 type TransformFunction<
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  TTarget extends Object,
+  TTarget extends object,
   TKey extends ObjectKey<TTarget>,
 > = (params: TransformFunctionParams<TTarget, TKey>) => TTarget[TKey];
 
 export type ClassPropertyDecoratorCommonOptions<
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  TTarget extends Object,
+  TTarget extends object,
   TKey extends ObjectKey<TTarget>,
   TOptional extends boolean,
 > = {
@@ -34,8 +31,7 @@ export type ClassPropertyDecoratorCommonOptions<
 };
 
 export function getClassPropertyDecoratorsFromCommonOptions<
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  TTarget extends Object,
+  TTarget extends object,
   TKey extends ObjectKey<TTarget>,
   TOptional extends boolean,
 >(

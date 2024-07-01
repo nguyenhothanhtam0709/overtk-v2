@@ -10,8 +10,7 @@ import {
 } from './_common';
 
 type ObjectPropertyDecoratorOptions<
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  TTarget extends Object,
+  TTarget extends object,
   TKey extends ObjectKey<TTarget>,
   TValue extends object,
   TOptional extends boolean,
@@ -20,8 +19,7 @@ type ObjectPropertyDecoratorOptions<
 };
 
 export function ObjectPropertyDecorator<
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  TTarget extends Object,
+  TTarget extends object,
   TKey extends ObjectKey<TTarget>,
   TValue extends object,
   TOptional extends boolean,

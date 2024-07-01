@@ -2,8 +2,7 @@ import type { CheckProperty } from './_helpers';
 import type { ObjectKey } from '../class';
 
 export type TypedPropertyDecorator<
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  TTarget extends Object,
+  TTarget extends object,
   TKey extends ObjectKey<TTarget>,
   TValue,
   TOptional extends boolean = false,

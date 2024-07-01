@@ -15,8 +15,7 @@ import {
 } from './_common';
 
 type StringPropertyDecoratorOptions<
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  TTarget extends Object,
+  TTarget extends object,
   TKey extends ObjectKey<TTarget>,
   TOptional extends boolean,
 > = ClassPropertyDecoratorCommonOptions<TTarget, TKey, TOptional> & {
@@ -26,8 +25,7 @@ type StringPropertyDecoratorOptions<
 };
 
 export function StringPropertyDecorator<
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  TTarget extends Object,
+  TTarget extends object,
   TKey extends ObjectKey<TTarget>,
   TOptional extends boolean,
 >(
